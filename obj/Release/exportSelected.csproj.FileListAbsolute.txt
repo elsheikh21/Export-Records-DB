@@ -1,0 +1,6 @@
+C:\Users\ahmede\documents\visual studio 2013\Projects\exportSelected\exportSelected\bin\Release\exportSelected.exe.config
+C:\Users\ahmede\documents\visual studio 2013\Projects\exportSelected\exportSelected\bin\Release\exportSelected.exe
+C:\Users\ahmede\documents\visual studio 2013\Projects\exportSelected\exportSelected\bin\Release\exportSelected.pdb
+C:\Users\ahmede\documents\visual studio 2013\Projects\exportSelected\exportSelected\obj\Release\exportSelected.exe
+C:\Users\ahmede\documents\visual studio 2013\Projects\exportSelected\exportSelected\obj\Release\exportSelected.pdb
+C:\Users\ahmede\documents\visual studio 2013\Projects\exportSelected\exportSelected\obj\Release\exportSelected.csprojResolveAssemblyReference.cache

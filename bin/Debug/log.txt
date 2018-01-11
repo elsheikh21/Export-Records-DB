@@ -1,0 +1,3 @@
+SELECTING ERROR IS DUE TO: Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=14490; handshake=506; 
+Successfully done on (10/17/2017 4:59:56 PM)
+Successfully done on (10/17/2017 6:15:48 PM)
