@@ -15,6 +15,7 @@ namespace exportSelected {
     static class Program {
 
         static void Main(string[] args) {
+            // execute both selects()
             if( select() > 0 ) {
                 if( select1() > 0 ) {
                     writeLog( String.Format( "Successfully done on ({0})", getTime() ) );
@@ -68,6 +69,7 @@ namespace exportSelected {
             SqlConnection MSSQLConn = new SqlConnection();
             MSSQLConn.ConnectionString = String.Format( "User ID={0};Initial Catalog={1};Data Source={2}; password={3}", userID, dbName, IPAddress, passWord );
 
+            // select all entries from DB, table name [XXXX] where line contains 2017 and order desc
             string selectStatment = "SELECT * FROM [XXXXXX] WHERE line LIKE '%2017%' ORDER BY Line DESC";
 
             SqlCommand comm = new SqlCommand( selectStatment, MSSQLConn );
