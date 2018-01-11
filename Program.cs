@@ -159,8 +159,10 @@ namespace exportSelected {
                 Outlook.Application oApp = new Outlook.Application();
 
                 Outlook.MailItem oMsg = (Outlook.MailItem)oApp.CreateItem( Outlook.OlItemType.olMailItem );
+            
+                string toEmail = ConfigurationManager.AppSettings["to"].ToString();
 
-                oMsg.HTMLBody = String.Format( "Dear Eng. XXXXX, please find the attachements below." );
+                oMsg.HTMLBody = String.Format( "Dear Eng. {0}, please find the attachements below.", toEmail    );
 
                 Outlook.Attachment oAttach = oMsg.Attachments.Add( fileName );
 
