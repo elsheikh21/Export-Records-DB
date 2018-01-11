@@ -12,7 +12,7 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 
 
 namespace exportSelected {
-    class Program {
+    protected class Program {
 
 
 
@@ -32,12 +32,8 @@ namespace exportSelected {
             string IPAddress = ConfigurationManager.AppSettings["IPAddress"].ToString();
             SqlConnection MSSQLConn = new SqlConnection();
             MSSQLConn.ConnectionString = String.Format( "User ID={0};Initial Catalog={1};Data Source={2}; password={3}", userID, dbName, IPAddress, passWord );
-            //this.MSSQLConn.ConnectionString = String.Format( "User ID={0};Initial Catalog={1};Data Source={2}; password={3}", this.username, this.initialCatalog, this.dataSource, this.password );
-            //string connectionString = @"Data Source=192.168.1.17,1776; Network Library=DBMSSOCN; Initial Catalog=AssetTracking; User ID=sa; Password=Pass@1234";
-            // [AttendanceHis] WHERE Logdate LIKE '%2017%' ORDER BY Logdate DESC
-            string selectStatment = "SELECT * FROM [AttendanceHis] WHERE Logdate LIKE '%2017%' ORDER BY Logdate DESC";
+            string selectStatment = "SELECT * FROM [YYYYYY] WHERE Logdate LIKE '%2017%' ORDER BY Logdate DESC";
 
-            //SqlConnection MSSQLConn= new SqlConnection( MSSQLConn.ConnectionString );
             SqlCommand comm = new SqlCommand( selectStatment, MSSQLConn );
 
             SqlDataAdapter da = null;
@@ -54,10 +50,9 @@ namespace exportSelected {
                 writeLog( String.Format( "SELECTING ERROR IS DUE TO: {0}", exc.ToString() ) );
 
             } finally {
-                //da.Dispose();
                 MSSQLConn.Close();
-
             }
+
             if( noOfRowsChanged > 0 ) {
                 exportCSV( dt, 1 );
             }
@@ -71,15 +66,12 @@ namespace exportSelected {
             string passWord = ConfigurationManager.AppSettings["password"].ToString();
             string dbName = ConfigurationManager.AppSettings["DataBaseName"].ToString();
             string IPAddress = ConfigurationManager.AppSettings["IPAddress"].ToString();
-            // HRPDC
+            
             SqlConnection MSSQLConn = new SqlConnection();
             MSSQLConn.ConnectionString = String.Format( "User ID={0};Initial Catalog={1};Data Source={2}; password={3}", userID, dbName, IPAddress, passWord );
 
-            //string connectionString = String.Format( @"Data Source=192.168.1.17\\SQLEXPRESS; Network Library=DBMSSOCN; Initial Catalog=AssetTracking; User ID={0}; Password={1}", userID, passWord );
-            // [Error_Records] WHERE line LIKE '%2017%' ORDER BY Line DESC
-            string selectStatment = "SELECT * FROM [Error_Records] WHERE line LIKE '%2017%' ORDER BY Line DESC";
+            string selectStatment = "SELECT * FROM [XXXXXX] WHERE line LIKE '%2017%' ORDER BY Line DESC";
 
-            //SqlConnection conn = new SqlConnection( MSSQLConn.ConnectionString );
             SqlCommand comm = new SqlCommand( selectStatment, MSSQLConn );
 
             SqlDataAdapter da = null;
@@ -96,7 +88,6 @@ namespace exportSelected {
                 writeLog( String.Format( "SELECTING1 ERROR IS DUE TO: {0}", exc.ToString() ) );
 
             } finally {
-                //da.Dispose();
                 MSSQLConn.Close();
             }
             if( noOfRowsChanged > 0 ) {
@@ -166,34 +157,21 @@ namespace exportSelected {
         
         public static int sendEmail(String fileName) {
             try {
-                // Create the Outlook application.
                 Outlook.Application oApp = new Outlook.Application();
 
-                // Create a new mail item.
                 Outlook.MailItem oMsg = (Outlook.MailItem)oApp.CreateItem( Outlook.OlItemType.olMailItem );
 
-                // Set HTMLBody. 
-                //add the body of the email
-                oMsg.HTMLBody = String.Format( "Dear Eng. Hossam, please find the attachements below." );
-
-                //Add an attachment.
-                //String sDisplayName = "MyAttachment";
-                //int iPosition = (int)oMsg.Body.Length + 1;
-                //int iAttachType = (int)Outlook.OlAttachmentType.olByValue;
-                //now attached the file
-                //Outlook.Attachment oAttach = oMsg.Attachments.Add( @"C:\\fileName.jpg", iAttachType, iPosition, sDisplayName );
+                oMsg.HTMLBody = String.Format( "Dear Eng. XXXXX, please find the attachements below." );
 
                 Outlook.Attachment oAttach = oMsg.Attachments.Add( fileName );
 
-                //Subject line
-                oMsg.Subject = String.Format( "Attendance History & Error Report for {0}", getTime() );
+                oMsg.Subject = String.Format( "XXXX & YYYYY for {0}", getTime() );
 
-                // Add a recipient.
                 Outlook.Recipients oRecips = (Outlook.Recipients)oMsg.Recipients;
 
-                Outlook.Recipient oRecip = (Outlook.Recipient)oRecips.Add( "hossam.elbarmawy@ecs-co.com" );
+                Outlook.Recipient oRecip = (Outlook.Recipient)oRecips.Add( "XXXXYYYY" );
                 oRecip.Resolve();
-                // Send.
+
                 ( (Outlook._MailItem)oMsg ).Send();
                 writeLog( String.Format( "Email sent is successfully sent for {0}.", getTime()) );
                 System.Threading.Thread.Sleep( 1000 );

@@ -7,4 +7,4 @@
 * Those CSV files are sent by email (from the outlook instance running on user PC)
 
   
- in case of any amends/suggestions please send me an <a>ahmedhelsheikh@gmail.com</a> 
+ in case of any amends/suggestions please send me an email at <a>ahmedhelsheikh@gmail.com</a> 
