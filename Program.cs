@@ -12,9 +12,7 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 
 
 namespace exportSelected {
-    protected class Program {
-
-
+    static class Program {
 
         static void Main(string[] args) {
             if( select() > 0 ) {
@@ -47,7 +45,7 @@ namespace exportSelected {
 
             } catch( Exception exc ) {
 
-                writeLog( String.Format( "SELECTING ERROR IS DUE TO: {0}", exc.ToString() ) );
+                writeLog( String.Format( "SELECTING ERROR IS DUE TO: {0}", exc ) );
 
             } finally {
                 MSSQLConn.Close();
@@ -85,7 +83,7 @@ namespace exportSelected {
 
             } catch( Exception exc ) {
 
-                writeLog( String.Format( "SELECTING1 ERROR IS DUE TO: {0}", exc.ToString() ) );
+                writeLog( String.Format( "SELECTING1 ERROR IS DUE TO: {0}", exc ) );
 
             } finally {
                 MSSQLConn.Close();
@@ -111,12 +109,11 @@ namespace exportSelected {
                 string dirName = Path.GetDirectoryName( Assembly.GetExecutingAssembly().GetName().CodeBase ) + "\\Logs\\log.txt";
                 string path = new Uri( dirName ).LocalPath;
 
-
                 string dirName1 = Path.GetDirectoryName( Assembly.GetExecutingAssembly().GetName().CodeBase );
                 string path1 = new Uri( dirName1 ).LocalPath;
 
                 if( which == 1 ) {
-                    name = String.Format( "{0}\\XXXX.csv", path1 );
+                    name = String.Format( "{0}\\XXXX.csv", path );
                 }
                 if( which == 2 ) {
                     name = String.Format( "{0}\\YYYY.csv", path1 );
@@ -147,12 +144,12 @@ namespace exportSelected {
                     sendEmail( name );
                 }
             } catch( Exception exc ) {
-                writeLog( String.Format( "EXPORTING ERROR DUE TO: {0}", exc.ToString() ) );
+                writeLog( String.Format( "EXPORTING ERROR DUE TO: {0}", exc ) );
             }
         }
         
         public static string getTime() {
-            return DateTime.Now.ToString();
+            return DateTime.Now.ToLowerInvariant();
         }
         
         public static int sendEmail(String fileName) {
